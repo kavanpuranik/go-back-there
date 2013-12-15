@@ -109,10 +109,10 @@ function querySuggestions(query, callback) {
             return;
         }
 
-        if (GoBackThere.urlMapping.length == 0) {
+        if (!GoBackThere.urlMapping.keys) {
 
             callback([
-                {content: query + " ", description: "No Mappings configured"}
+                {content: chrome.extension.getURL('src/options/options.html'), description: "No pre-defined urls configured. Go to Options."}
             ]);
             return;
         }
@@ -204,7 +204,7 @@ function onGetActiveTabBaseUrl(callback){
     		activeTabBaseUrl = parts[0] + "//" + parts[2];
     	}
 
-    	callback(activeTabBaseUrl);
+        callback(activeTabBaseUrl);
     });
 	
 	
@@ -215,13 +215,7 @@ function loadMapping(){
     chrome.storage.local.get('settings', function(items) {
 
         var settings = items.settings;
-        if (!settings || !settings.mapping) {
-
-            // TODO
-            console.log("unexpected state. Settings got wiped. TODO: need to figure out the best way to recover");
-
-        } else {
-
+        if (settings && settings.mapping) {
             populateMapping(settings.mapping);
         }
     });
