@@ -1,8 +1,8 @@
 {
-  "name": "Navigate Faster",
-  "version": "0.0.1",
+  "name": "Go Back There",
+  "version": "0.9.0",
   "manifest_version": 2,
-  "description": "Navigate Faster",
+  "description": "Go Back There",
   "homepage_url": "http://www.penguintastic.com",
   "icons": {
     "16": "icons/icon16.png",
@@ -17,17 +17,13 @@
   "options_page": "src/options/options.html",
   "browser_action": {
     "default_icon": "icons/icon19.png",
-    "default_title": "Navigate Faster",
+    "default_title": "Go Back There",
     "default_popup": "src/browser_action/browser_action.html"
   },
   "permissions": [
-    "contentSettings",
-    "contextMenus",
-    "tabs",
 	"activeTab",
     "storage",
-    "history",
-    "bookmarks"
+    "history"
   ],
   "omnibox": {
     "keyword": ">"
@@ -35,7 +31,7 @@
     "commands": {
     "_execute_browser_action": {
       "suggested_key": {
-        "default": "Alt+Shift+J"
+        "default": "Alt+Shift+G"
       }
     }  
   }
