@@ -1,0 +1,120 @@
+body {
+    font-family: Helvetica, Ubuntu, Arial, sans-serif;
+    font-size: 0.9em;
+}
+
+p {
+    margin: 0px;
+}
+
+.browser-action-body  {
+    height: 580px;
+    width: 600px;
+}
+
+.header {
+    font-size: 2em;
+    font-weight: bold;
+    color: #A4A4A4;
+}
+
+.message {
+    padding: 5px 5px;
+    color: #A4A4A4;
+    font-size: 0.9em;
+}
+
+.options {
+    float: right;
+    font-size: 0.9em;
+}
+
+#search {
+    font-size: 20px;
+    height: 34px;
+    margin-bottom: 0px;
+    padding: 4px;
+    background-color: white;
+    border-radius: 3px;
+    border: 1px solid rgb(232, 232, 232);
+    box-shadow: rgb(68, 68, 68) 0px 0px 1px;
+    width: 100%;
+    outline: none;
+    box-sizing: border-box;
+}
+
+#search::-webkit-input-placeholder {
+    font-size: 0.65em;
+    color: #A4A4A4;
+    padding-top: 4px;
+}
+
+.ui-autocomplete {
+    padding: 5px;
+    max-height: 450px;
+    max-width: 600px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+}
+
+.ui-widget-content {
+    border: 1px solid #ddd;
+    background: none;
+    color: #333;
+}
+
+.ui-widget {
+    font-size: 0.9em;
+}
+
+.ui-menu .ui-menu-item {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    border-bottom: 1px solid rgb(221, 221, 221);
+}
+
+.ui-menu-item a span:nth-child(3){
+    color: green;
+}
+
+.ui-menu .ui-menu-item a {
+    display: block;
+    padding: 2px .4em;
+    line-height: 1.5;
+    min-height: 0;
+}
+
+.ui-widget-content .ui-state-focus{
+    border: none;
+    font-weight: normal;
+    color: white;
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#648ffa), to(#0d67f7));
+}
+
+.ui-menu .ui-menu-item a.ui-state-focus span:nth-child(3){
+    font-weight: normal;
+    color: white;
+}
+
+.clearfix:after {
+    content:"'";
+    clear: both;
+    display:block;
+    visibility: hidden;
+    height: 0;
+}
+
+#mappings {
+    font-family: monospace;
+}
+
+#mappings::-webkit-input-placeholder::after {
+    display:block;
+    content:"profile settings:/some-page/profile-settings.html\A";
+}
+
+.submit-message {
+    padding-left: 5px;
+}

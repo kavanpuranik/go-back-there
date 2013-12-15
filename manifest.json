@@ -1,0 +1,42 @@
+{
+  "name": "Navigate Faster",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "Navigate Faster",
+  "homepage_url": "http://www.penguintastic.com",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "default_locale": "en",
+  "background": {
+    "page": "src/bg/background.html",
+    "persistent": true
+  },
+  "options_page": "src/options/options.html",
+  "browser_action": {
+    "default_icon": "icons/icon19.png",
+    "default_title": "Navigate Faster",
+    "default_popup": "src/browser_action/browser_action.html"
+  },
+  "permissions": [
+    "contentSettings",
+    "contextMenus",
+    "tabs",
+	"activeTab",
+    "storage",
+    "history",
+    "bookmarks"
+  ],
+  "omnibox": {
+    "keyword": ">"
+  },
+    "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Alt+Shift+J"
+      }
+    }  
+  }
+}
