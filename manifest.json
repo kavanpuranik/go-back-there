@@ -16,7 +16,10 @@
   },
   "options_page": "src/options/options.html",
   "browser_action": {
-    "default_icon": "icons/icon19.png",
+    "default_icon": {
+          "19": "icons/icon19.png",
+          "38": "icons/icon38.png"
+    },
     "default_title": "Go Back There",
     "default_popup": "src/browser_action/browser_action.html"
   },
