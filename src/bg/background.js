@@ -20,11 +20,25 @@ chrome.runtime.onInstalled.addListener(function() {
 chrome.runtime.onMessage.addListener(function(msg, messageSender, sendResponse) {
 
     if (msg.type === "query"){
+
+        var processResults = function(suggestions, historyResults){
+
+            suggestions.forEach(function(suggestion){
+                suggestion.type = "pre-defined";
+            });
+
+            historyResults.forEach(function(historyResult){
+                historyResult.type = "history";
+            });
+
+            sendResponse({suggestions: suggestions.concat(historyResults)});
+        }
+
         querySuggestions(msg.query, function(suggestions){
 
             searchHistory(msg.query, function(historyResults){
 
-                sendResponse({suggestions: suggestions.concat(historyResults)});
+                processResults(suggestions, historyResults);
             });
         });
 
@@ -55,22 +69,31 @@ chrome.omnibox.onInputStarted.addListener(function(){
 
 chrome.omnibox.onInputChanged.addListener(function(query, suggest) {
 
+    var processResults = function(suggestions, historyResults){
+
+        console.log("suggestions:" + suggestions.length);
+        console.log("history:" + historyResults.length);
+
+        suggestions.forEach(function(suggestion){
+            suggestion.description = "> " + suggestion.description;
+        });
+
+        var all = suggestions.concat(historyResults);
+
+        // clean up invalid XML characters or else chrome omnibox errors out while XML parsing.
+        // Did not like CDATA block either!
+        all.forEach(function(item){
+            item.description = item.description.replace(/&/g, "and").replace(/</g,"");
+        });
+
+        suggest(all);
+    }
+
     querySuggestions(query, function(suggestions){
 
         searchHistory(query, function(historyResults){
 
-            console.log("suggestions:" + suggestions.length);
-            console.log("history:" + historyResults.length);
-            var all = suggestions.concat(historyResults);
-
-            // clean up invalid XML characters or else chrome omnibox errors out while XML parsing.
-            // Did not like CDATA block either!
-            for (var i = 0; i < all.length; i++){
-
-                all[i].description = all[i].description.replace(/&/g, "and").replace(/</g,"");
-            }
-
-            suggest(all);
+            processResults(suggestions, historyResults);
         });
     });
 });

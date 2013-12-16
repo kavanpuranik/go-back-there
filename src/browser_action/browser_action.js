@@ -39,13 +39,7 @@ function initSearchInput() {
 
             chrome.runtime.sendMessage({type: "query", query: request.term}, function (result) {
 
-                response($.map(result.suggestions, function (item) {
-                    return {
-                        title: item.description,
-                        url: item.content
-                    }
-                }));
-
+                response(result.suggestions);
             });
         },
         focus: function (event, ui) {
@@ -53,9 +47,14 @@ function initSearchInput() {
         }
 
     }).data("ui-autocomplete")._renderItem = function (ul, item) {
-        return $("<li>")
-            .append("<a><span>" + item.title + "</span><br><span>" + item.url + "</span></a>")
-            .appendTo(ul);
+        var html = "";
+        if (item.type === 'pre-defined'){
+            html += "<a class='fa fa-caret-square-o-right'>";
+        } else {
+            html += "<a>";
+        }
+        html += "<span>" + item.description + "</span><br><span>" + item.content + "</span></a>";
+        return $("<li>").append(html).appendTo(ul);
     };
 
     // need a timeout to make this work
