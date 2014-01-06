@@ -27,10 +27,13 @@ function initSearchInput() {
         minLength: 0,
         select: function (event, ui) {
 
-            chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
-
-                chrome.tabs.update(tabs[0].id, {url: ui.item.content});
-            });
+            if (event.shiftKey) {
+                chrome.tabs.create({ url: ui.item.content, active: true, windowId: chrome.windows.WINDOW_ID_CURRENT});
+            } else {
+                chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
+                    chrome.tabs.update(tabs[0].id, {url: ui.item.content});
+                });
+            }
 
             window.close();
             return true;
@@ -49,9 +52,9 @@ function initSearchInput() {
     }).data("ui-autocomplete")._renderItem = function (ul, item) {
         var html = "";
         if (item.type === 'pre-defined'){
-            html += "<a class='fa fa-caret-square-o-right'>";
+            html += "<a href='javascript:;' class='fa fa-caret-square-o-right'>";
         } else {
-            html += "<a>";
+            html += "<a href='javascript:;' >";
         }
         html += "<span>" + item.description + "</span><br><span>" + item.content + "</span></a>";
         return $("<li>").append(html).appendTo(ul);
