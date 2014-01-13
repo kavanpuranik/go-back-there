@@ -52,11 +52,11 @@ function initSearchInput() {
     }).data("ui-autocomplete")._renderItem = function (ul, item) {
         var html = "";
         if (item.type === 'pre-defined'){
-            html += "<a href='javascript:;' class='fa fa-caret-square-o-right'>";
+            html += "<a href='javascript:;' class='fa fa-caret-square-o-right'><span class='pre-defined-icon'>";
         } else {
-            html += "<a href='javascript:;' >";
+            html += "<a href='javascript:;' ><span>";
         }
-        html += "<span>" + item.description + "</span><br><span>" + item.content + "</span></a>";
+        html += item.description + "</span><br><span>" + item.content + "</span></a>";
         return $("<li>").append(html).appendTo(ul);
     };
 
