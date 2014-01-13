@@ -5,7 +5,7 @@ function initOptions() {
     chrome.runtime.sendMessage({type: "get-active-tab-base-url"}, function(result) {
 
         if (result.activeTabBaseUrl){
-            $("#search").attr("placeholder", "Search history for " + result.activeTabBaseUrl + ". Start with > for pre-defined urls");
+            $("#search").attr("placeholder", "Search history for " + result.activeTabBaseUrl);
         }
     });
 
